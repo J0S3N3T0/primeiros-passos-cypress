@@ -16,6 +16,8 @@ describe('Orange HRM Tests', () => {
     genericField: ".oxd-input--active",
     dateCloseButton: ".--close",
     submitButton: "[type='submit']",
+    genericWrapper: ".oxd-select-wrapper",
+    genericRadioWrappper: ".oxd-radio-wrapper"
   }
 
   it('User Update - Sucess', () => {
@@ -38,8 +40,20 @@ describe('Orange HRM Tests', () => {
     cy.get(selectorsList.dateCloseButton).click()
     cy.get(selectorsList.genericField).eq(7).clear().type(personalDetails.birthday.date)
     cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.submitButton).eq(0).click()
+    cy.get(selectorsList.genericWrapper).eq(0).click()
+    cy.get('.oxd-select-dropdown > :nth-child(27)').click()
+    cy.get(selectorsList.genericWrapper).eq(1).click()
+    cy.get('.oxd-select-dropdown > :nth-child(2)').click()
+    cy.get(selectorsList.genericRadioWrappper).eq(1).click()
+    cy.get(selectorsList.submitButton).eq(0).click({force: true})
     cy.get('body').should('contain', 'Successfully Updated')
     cy.get('.oxd-toast-close')
+    cy.get(selectorsList.genericWrapper).eq(2).click()
+    cy.get('.oxd-select-dropdown > :nth-child(9)').click()
+    cy.get(selectorsList.genericField).eq(9).clear().type("001")
+    cy.get(selectorsList.submitButton).eq(1).click({force: true})
+    cy.get('body').should('contain', 'Successfully Updated')
+    cy.get('.oxd-toast-close')
+
   })
 })
