@@ -1,0 +1,23 @@
+{  
+    "fullName": {
+        "firstName": "Joseneto",
+        "middleName": "Aguiar",
+        "lastName": "Amorim"
+    },
+    "employeeId": {
+        "employeeId": "001" 
+    },
+    "otherId": {
+        "otherId": "00000"
+    },
+    "driverLicenseNumber": {
+        "driverLicenseNumber": "00000"
+    },
+    "licenseExpiryDate": {
+        "licenseExpiryDate": "2025-01-01"
+    },
+    "birthday": {
+        "date": "2000-02-13"
+    }
+
+}  
