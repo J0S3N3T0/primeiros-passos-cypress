@@ -24,33 +24,13 @@ describe('Orange HRM Tests', () => {
 
     myInfoPage.checkPersonalDetailsPage()
 
-    myInfoPage.firstNameInput(personalDetailsData.fullName.firstName)
+    myInfoPage.fillPersonalDetails(personalDetailsData.fullName.firstName, personalDetailsData.fullName.middleName, personalDetailsData.fullName.lastName)
 
-    myInfoPage.middleNameInput(personalDetailsData.fullName.middleName)
-
-    myInfoPage.lastNameInput(personalDetailsData.fullName.lastName)
-
-    myInfoPage.employeeId(personalDetailsData.employeeId.employeeId)
-
-    myInfoPage.otherId(personalDetailsData.otherId.otherId)
-
-    myInfoPage.driverLicenseNumber(personalDetailsData.driverLicenseNumber.driverLicenseNumber)
-
-    myInfoPage.licenseExpiryDate(personalDetailsData.licenseExpiryDate.licenseExpiryDate)
-
-    myInfoPage.bithday(personalDetailsData.birthday.date)
-
-    //myInfoPage.nationality()
-
-    myInfoPage.status()
-
-    myInfoPage.gender()
+    myInfoPage.fillEmployeeDetails(personalDetailsData.employeeId.employeeId, personalDetailsData.otherId.otherId, personalDetailsData.driverLicenseNumber.driverLicenseNumber, personalDetailsData.licenseExpiryDate.licenseExpiryDate, personalDetailsData.birthday.date)
 
     myInfoPage.firstSave()
 
-    myInfoPage.blood()
-
-    myInfoPage.testField(personalDetailsData.testField.number)
+    myInfoPage.customField(personalDetailsData.testField.number)
 
     myInfoPage.secondSave()
 

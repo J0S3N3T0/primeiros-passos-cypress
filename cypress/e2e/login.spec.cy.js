@@ -3,7 +3,7 @@ import LoginPage from '../pages/loginPage'
 import DashboardPage from '../pages/dashboardPage'
 
 const loginPage = new LoginPage()
-const dashboard = new DashboardPage()
+const dashboardPage = new DashboardPage()
 
 describe('Orange HRM Tests', () => {
 
@@ -11,9 +11,10 @@ describe('Orange HRM Tests', () => {
   it('Login - Sucess', () => {
 
     loginPage.accessLoginPage()
+
     loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
-    cy.location('pathname').should('equal', dashboard.accessDashboardPage())
-    dashboard.gridDashboard
+
+    dashboardPage.checkDashboardPage()
 
   })
   it('Login - Fail - Wrong Username', () => {
