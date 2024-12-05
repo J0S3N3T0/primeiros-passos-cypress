@@ -1,59 +1,58 @@
 import userData from '../fixtures/userData.json'
-import personalDetails from '../fixtures/personalDetails.json'
+import personalDetailsData from '../fixtures/personalDetailsData.json'
+import LoginPage from '../pages/loginPage'
+import DashboardPage from '../pages/dashboardPage'
+import MyInfoPage from '../pages/myInfoPage'
+import MenuPage from '../pages/menuPage'
+
+const loginPage = new LoginPage()
+const dashboardPage = new DashboardPage()
+const myInfoPage = new MyInfoPage()
+const menuPage = new MenuPage()
 
 describe('Orange HRM Tests', () => {
 
-  const selectorsList ={
-    usernameFiel: "[name='username']",
-    passwordFiel: "[name='password']",
-    loginButton: ".oxd-button",
-    dashboardGrid: ".orangehrm-dashboard-grid",
-    myinfoButton: "[href='/web/index.php/pim/viewMyDetails']",
-    employeeContent: ".orangehrm-edit-employee",
-    firstNameInput:"[name='firstName']",
-    middleNameInput: "[name='middleName']",
-    lastNameInput: "[name='lastName']",
-    genericField: ".oxd-input--active",
-    dateCloseButton: ".--close",
-    submitButton: "[type='submit']",
-    genericWrapper: ".oxd-select-wrapper",
-    genericRadioWrappper: ".oxd-radio-wrapper"
-  }
-
   it('User Update - Sucess', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameFiel).type(userData.userSucess.username)
-    cy.get(selectorsList.passwordFiel).type(userData.userSucess.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorsList.dashboardGrid)
-    cy.get(selectorsList.myinfoButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/pim/viewPersonalDetails/empNumber/7')
-    cy.get(selectorsList.employeeContent)
-    cy.get(selectorsList.firstNameInput).clear().type(personalDetails.fullName.firstName)
-    cy.get(selectorsList.middleNameInput).clear().type(personalDetails.fullName.middleName)
-    cy.get(selectorsList.lastNameInput).clear().type(personalDetails.fullName.lastName)
-    cy.get(selectorsList.genericField).eq(3).clear().type(personalDetails.employeeId.employeeId)
-    cy.get(selectorsList.genericField).eq(4).clear().type(personalDetails.otherId.otherId)
-    cy.get(selectorsList.genericField).eq(5).clear().type(personalDetails.driverLicenseNumber.driverLicenseNumber)
-    cy.get(selectorsList.genericField).eq(6).clear().type(personalDetails.licenseExpiryDate.licenseExpiryDate)
-    cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.genericField).eq(7).clear().type(personalDetails.birthday.date)
-    cy.get(selectorsList.dateCloseButton).click()
-    cy.get(selectorsList.genericWrapper).eq(0).click()
-    cy.get('.oxd-select-dropdown > :nth-child(27)').click()
-    cy.get(selectorsList.genericWrapper).eq(1).click()
-    cy.get('.oxd-select-dropdown > :nth-child(2)').click()
-    cy.get(selectorsList.genericRadioWrappper).eq(1).click()
-    cy.get(selectorsList.submitButton).eq(0).click({force: true})
-    cy.get('body').should('contain', 'Successfully Updated')
-    cy.get('.oxd-toast-close')
-    cy.get(selectorsList.genericWrapper).eq(2).click()
-    cy.get('.oxd-select-dropdown > :nth-child(9)').click()
-    cy.get(selectorsList.genericField).eq(9).clear().type("001")
-    cy.get(selectorsList.submitButton).eq(1).click({force: true})
-    cy.get('body').should('contain', 'Successfully Updated')
-    cy.get('.oxd-toast-close')
+
+    loginPage.accessLoginPage()
+
+    loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
+
+    dashboardPage.checkDashboardPage()
+
+    menuPage.myinfoButton()
+
+    myInfoPage.checkPersonalDetailsPage()
+
+    myInfoPage.firstNameInput(personalDetailsData.fullName.firstName)
+
+    myInfoPage.middleNameInput(personalDetailsData.fullName.middleName)
+
+    myInfoPage.lastNameInput(personalDetailsData.fullName.lastName)
+
+    myInfoPage.employeeId(personalDetailsData.employeeId.employeeId)
+
+    myInfoPage.otherId(personalDetailsData.otherId.otherId)
+
+    myInfoPage.driverLicenseNumber(personalDetailsData.driverLicenseNumber.driverLicenseNumber)
+
+    myInfoPage.licenseExpiryDate(personalDetailsData.licenseExpiryDate.licenseExpiryDate)
+
+    myInfoPage.bithday(personalDetailsData.birthday.date)
+
+    //myInfoPage.nationality()
+
+    myInfoPage.status()
+
+    myInfoPage.gender()
+
+    myInfoPage.firstSave()
+
+    myInfoPage.blood()
+
+    myInfoPage.testField(personalDetailsData.testField.number)
+
+    myInfoPage.secondSave()
 
   })
 })

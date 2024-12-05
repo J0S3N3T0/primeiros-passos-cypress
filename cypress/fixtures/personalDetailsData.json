@@ -18,6 +18,9 @@
     },
     "birthday": {
         "date": "2000-02-13"
+    },
+    "testField": {
+        "number": "001"
     }
 
 }  

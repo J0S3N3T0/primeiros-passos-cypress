@@ -1,37 +1,32 @@
 import userData from '../fixtures/userData.json'
+import LoginPage from '../pages/loginPage'
+import DashboardPage from '../pages/dashboardPage'
+
+const loginPage = new LoginPage()
+const dashboard = new DashboardPage()
 
 describe('Orange HRM Tests', () => {
 
-  const selectorsList ={
-    usernameFiel: ":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input",
-    passwordFiel: ":nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input",
-    loginButton: ".oxd-button",
-    selectionTitlleTopBar: ".oxd-topbar-header-breadcrumb > .oxd-text",
-    alertErrorLogin: ".oxd-alert",
-    dashboardGrid: ".orangehrm-dashboard-grid > :nth-child(1)"
-  }
 
   it('Login - Sucess', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameFiel).type(userData.userSucess.username)
-    cy.get(selectorsList.passwordFiel).type(userData.userSucess.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    //cy.get(selectorsList.selectionTitlleTopBar).contains('Dashboard')
-    cy.get(selectorsList.dashboardGrid)
+
+    loginPage.accessLoginPage()
+    loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
+    cy.location('pathname').should('equal', dashboard.accessDashboardPage())
+    dashboard.gridDashboard
+
   })
   it('Login - Fail - Wrong Username', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameFiel).type(userData.userWrongName.username)
-    cy.get(selectorsList.passwordFiel).type(userData.userWrongName.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.get(selectorsList.alertErrorLogin)
+
+    loginPage.accessLoginPage()
+    loginPage.loginWithUser(userData.userWrongName.username, userData.userWrongName.password)
+    loginPage.alertError()
+
   })
   it('Login - Fail - Wrong Password', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorsList.usernameFiel).type(userData.userWrongPassword.username)
-    cy.get(selectorsList.passwordFiel).type(userData.userWrongPassword.password)
-    cy.get(selectorsList.loginButton).click()
-    cy.get(selectorsList.alertErrorLogin)
+
+    loginPage.accessLoginPage()
+    loginPage.loginWithUser(userData.userWrongPassword.username, userData.userWrongPassword.password)
+    loginPage.alertError()
   })
 })
