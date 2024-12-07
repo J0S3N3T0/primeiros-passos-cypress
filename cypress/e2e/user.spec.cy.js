@@ -5,12 +5,15 @@ import DashboardPage from '../pages/dashboardPage'
 import MyInfoPage from '../pages/myInfoPage'
 import MenuPage from '../pages/menuPage'
 
+const Chance = require('chance');
+
 const loginPage = new LoginPage()
 const dashboardPage = new DashboardPage()
 const myInfoPage = new MyInfoPage()
 const menuPage = new MenuPage()
+const chance = new Chance()
 
-describe('Orange HRM Tests', () => {
+describe('User update with Orange HRM Tests', () => {
 
   it('User Update - Sucess', () => {
 
@@ -24,13 +27,19 @@ describe('Orange HRM Tests', () => {
 
     myInfoPage.checkPersonalDetailsPage()
 
-    myInfoPage.fillPersonalDetails(personalDetailsData.fullName.firstName, personalDetailsData.fullName.middleName, personalDetailsData.fullName.lastName)
+    myInfoPage.fillPersonalDetails(chance.first(), chance.string(), chance.last())
 
-    myInfoPage.fillEmployeeDetails(personalDetailsData.employeeId.employeeId, personalDetailsData.otherId.otherId, personalDetailsData.driverLicenseNumber.driverLicenseNumber, personalDetailsData.licenseExpiryDate.licenseExpiryDate, personalDetailsData.birthday.date)
+    // myInfoPage.fillPersonalDetails(personalDetailsData.fullName.firstName, personalDetailsData.fullName.middleName, personalDetailsData.fullName.lastName)
+
+    myInfoPage.fillEmployeeDetails(chance.natural({min: 1000000000, max: 9999999999}), chance.natural({min: 10000, max: 99999}), chance.natural({min: 10000, max: 99999}), personalDetailsData.licenseExpiryDate.licenseExpiryDate, personalDetailsData.birthday.date)
+
+    // myInfoPage.fillEmployeeDetails(personalDetailsData.employeeId.employeeId, personalDetailsData.otherId.otherId, personalDetailsData.driverLicenseNumber.driverLicenseNumber, personalDetailsData.licenseExpiryDate.licenseExpiryDate, personalDetailsData.birthday.date)
 
     myInfoPage.firstSave()
 
-    myInfoPage.customField(personalDetailsData.testField.number)
+    myInfoPage.customField(chance.natural({min: 0, max: 999}))
+
+    //myInfoPage.customField(personalDetailsData.testField.number)
 
     myInfoPage.secondSave()
 

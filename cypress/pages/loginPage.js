@@ -22,5 +22,6 @@ class LoginPage{
     alertError(){
         cy.get(this.selectorsList().alertErrorLogin)
     }
+
 }
 export default LoginPage
