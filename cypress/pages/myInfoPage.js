@@ -15,11 +15,6 @@ class MyInfoPage {
         return selectors
     }   
 
-    checkPersonalDetailsPage(){
-        cy.location('pathname').should('equal', '/web/index.php/pim/viewPersonalDetails/empNumber/7')
-        cy.get(this.selectorsList().employeeContent).should('be.visible')
-    }
-
     fillPersonalDetails(firstName, middleName, lastName){
         cy.get(this.selectorsList().firstNameInput).clear().type(firstName)
         cy.get(this.selectorsList().middleNameInput).clear().type(middleName)
