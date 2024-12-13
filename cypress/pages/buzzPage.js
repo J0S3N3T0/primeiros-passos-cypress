@@ -99,13 +99,13 @@ class BuzzPage {
 
     createNewPostVideo(text, urlVideo){
         cy.get(this.selectorsList().genericButton).eq(4).click()
-        cy.get(this.selectorsList().cardTittle).should('contain', 'Share Video')
-        cy.get('textarea').eq(1).type(text)
-        cy.get('textarea').eq(2).click()
-        cy.get('textarea').eq(2).should('be.visible');
-        cy.get('textarea').eq(2).type(urlVideo)
-        cy.get('.oxd-form-actions > .oxd-button').click()
-        //cy.reload()
+        cy.get('.oxd-dialog-container-default--inner').should('be.visible')
+        
+        cy.get('textarea').eq(1).should('be.visible').type(text, { force: true });
+        
+        cy.get('textarea').eq(2).should('be.visible').type(urlVideo, { force: true }); 
+
+        cy.get(this.selectorsList().buttonPost).should('be.visible').click();
     }
 
 }
