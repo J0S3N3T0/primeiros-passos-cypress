@@ -11,7 +11,7 @@ const buzzPage = new BuzzPage()
 
 describe('Post and Delete in Buzz', () => {
 
-    it.skip('TypePost -> LikePost -> EditPost -> DeletePost', () => {
+    it('TypePost -> LikePost -> EditPost -> DeletePost', () => {
 
         loginPage.accessLoginPage()
         loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
@@ -37,7 +37,7 @@ describe('Post and Delete in Buzz', () => {
         buzzPage.buttonOptionDelete()
 
     }),
-    it.skip('TypePost -> ComentInPost -> LikeComentary -> EditComentary -> DeleteComentary', () => {
+    it('TypePost -> ComentInPost -> LikeComentary -> EditComentary -> DeleteComentary', () => {
 
         loginPage.accessLoginPage()
         loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
@@ -66,42 +66,8 @@ describe('Post and Delete in Buzz', () => {
 
         buzzPage.menssageDeleted()
 
-        // buzzPage.menssageDeleted()
-
-        // buzzPage.buttonEditComentary()
-
-        // buzzPage.buttonDeleteComentary()
-
-        // buzzPage.buttonHeart()
-
-        // buzzPage.buttonComentary()
-
-        // buzzPage.buttonLikeComentary()
-
-        // buzzPage.buttonEditComentary()
-
-        // buzzPage.menssageSucess()
-
-        // cy.wait(3000)
-
-        // buzzPage.buttonDeleteComentary()
-
-        // buzzPage.menssageDeleted()
-       
-
-        // buzzPage.buttonHeart()
-
-        // buzzPage.buttonOptionDelete()
-
-        // buzzPage.menssageDeleted()
-
-        //buzzPage.buttonShareVideo()
-
-        //buzzPage.buttonShareVideo()
-        //buzzPage.createNewPostVideo("Best OLD MEME", "https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-
     }),
-    it.skip('TypePost -> SharePost -> DeleteSharePost -> DeletePost', () => {
+    it('TypePost -> SharePost -> DeleteSharePost -> DeletePost', () => {
 
         loginPage.accessLoginPage()
         loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
